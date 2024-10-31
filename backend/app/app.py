@@ -2,7 +2,7 @@ import sys
 from pathlib import Path
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))   # Adiciona o diretório 'backend' ao caminho
-from shared.functions.operacoes import Calculo
+from shared.classes.operacoes import Calculo
 
 print("\n--------Caluladora--------\n")
 
