@@ -15,7 +15,7 @@ const Calculadora = () => {
                 <Input title="n2" />
             </View>
             <Text style={styles.igual}>=</Text>
-            <Input title="result" width="391px" />
+            <Input title="result" width="95%" />
 
 
             <View style={{position: 'absolute', bottom: 15}}>

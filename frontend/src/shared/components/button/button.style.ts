@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 export const ButtomContainer = styled.TouchableOpacity<{ backgroundColor?: string }>`
     alignItems: center;
     justifyContent: center;
-    width: 90px;
+    width: 23.7%;
     height: 90px;
     marginTop: 5px;
     backgroundColor: ${({ backgroundColor }) => backgroundColor || '#D9D9D9'};

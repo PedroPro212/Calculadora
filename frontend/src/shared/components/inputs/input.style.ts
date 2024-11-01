@@ -6,8 +6,8 @@ export const Container = styled.View<{ width?: string }>`
 `
 
 export const InputContainer = styled.TextInput<{ width?: string }>`
-    width: ${({ width }) => width || '119px'};
-    height: 70px;
+    width: ${({ width }) => width || '100%'};
+    height: 70%;
     borderRadius: 5px;
     borderWidth: 1px;
     borderColor: #000000;

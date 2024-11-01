@@ -14,12 +14,12 @@ const styles = StyleSheet.create({
     },
     igual: {
         fontSize: 50,
-        marginTop: 5,
+        marginTop: '2%',
         color: '#000000'
     },
     rowsOperacoes: {
         flexDirection: 'row', 
-        gap: 15,
+        gap: 10,
         marginTop: 45
     },
     rowsTeclas: {
