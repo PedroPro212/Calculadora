@@ -11,7 +11,9 @@ export const InputContainer = styled.TextInput<{ width?: string }>`
     borderRadius: 5px;
     borderWidth: 1px;
     borderColor: #000000;
-    backgroundColor: #D9D9D9
+    backgroundColor: #D9D9D9;
+    fontSize: 23px;
+    padding: 8px
 `
 
 export const DescInput = styled.Text`

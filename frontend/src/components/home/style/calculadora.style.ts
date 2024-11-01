@@ -9,11 +9,13 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 25,
-        margin: 25
+        margin: 25,
+        color: '#000000'
     },
     igual: {
         fontSize: 50,
-        marginTop: 5
+        marginTop: 5,
+        color: '#000000'
     },
     rowsOperacoes: {
         flexDirection: 'row', 
