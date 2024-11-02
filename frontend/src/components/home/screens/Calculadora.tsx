@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { View, Text, StyleSheet, TextInput, Alert } from "react-native";
 
+// Meus componentes
 import styles from "../style/calculadora.style";
 import Input from "../../../shared/components/inputs/Input";
 import ButtomCustom from "../../../shared/components/button/Button";
+
+// Minhas funções
+import { deletarUltimoCaracter } from "../../../shared/functions/deleteCaracter";
 
 const Calculadora = () => {
     
@@ -109,7 +113,7 @@ const Calculadora = () => {
                 </View>
                 <View style={styles.rowsTeclas}>
                     <ButtomCustom title="=" style={{width:299}} onPress={calcularResultado} />
-                    <ButtomCustom title="DEL" fontSize="20px" />
+                    <ButtomCustom title="DEL" fontSize="20px" onPress={() => deletarUltimoCaracter(activeInput, inputValue1, inputValue2, inputValue3, setInputValue1, setInputValue2, setInputValue3)} />
                 </View>
             </View>
         </View>
