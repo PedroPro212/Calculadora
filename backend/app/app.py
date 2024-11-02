@@ -1,41 +1,36 @@
+from flask import Flask, request, jsonify
+from flask_cors import CORS
 import sys
 from pathlib import Path
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))   # Adiciona o diretório 'backend' ao caminho
 from shared.classes.operacoes import Calculo
 
-print("\n--------Caluladora--------\n")
+app = Flask(__name__)
+CORS(app)
 
-while True:
-    try:
-        print("Escolha sua operação: \n 1-Adição 2-Subtração 3-Multiplicação 4-Divisão")
-        operacao = int(input("Opcão: "))
+@app.route('/calcular', methods=['POST'])
 
-        n1 = float(input("\nPrimeiro número: "))
-        n2 = float(input("Segundo número: "))
+def calcular():
+    data= request.json
+    n1 = float(data['n1'])
+    n2 = float(data['n2'])
+    operacao = data['operacao']
 
-        objeto = Calculo(n1,n2)
+    objeto = Calculo(n1,n2)
 
-        if operacao == 1:
-            objeto.adicao()
-        elif operacao == 2:
-            objeto.subtrair()
-        elif operacao == 3:
-            objeto.multiplicacao()
-        elif operacao == 4:
-            objeto.divisao()
-        else:
-            print("Algo deu errado")
-            continue
-        
-        resposta = input("Digite 'sair' para encerrar o programa ou pressione Enter para continuar: ")
-        if resposta.lower() == 'sair':
-            print("Calculadora encerrada")
-            break
+    if operacao == '+':
+        resultado = objeto.adicao()
+    elif operacao == '-':
+        resultado = objeto.subtrair()
+    elif operacao == '*':
+        resultado = objeto.multiplicacao()
+    elif operacao == '/':
+        resultado = objeto.divisao()
+    else:
+        return jsonify({'error': 'Operação inválida'}), 400
+    
+    return jsonify({'resultado': resultado})
 
-    except KeyboardInterrupt:
-        print("\nCalculadora encerrada pelo usuário.")
-        break  # Encerra o loop
-
-    except:
-        print("Algo deu errado")
+if __name__ == '__main__':
+    app.run(debug=True)

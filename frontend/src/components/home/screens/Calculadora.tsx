@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, Text, StyleSheet, TextInput } from "react-native";
+import { View, Text, StyleSheet, TextInput, Alert } from "react-native";
 
 import styles from "../style/calculadora.style";
 import Input from "../../../shared/components/inputs/Input";
@@ -10,6 +10,7 @@ const Calculadora = () => {
     const [inputValue1, setInputValue1] = useState("")  // n1
     const [inputValue2, setInputValue2] = useState("")  // n2
     const [inputValue3, setInputValue3] = useState("")  // operacao
+    const [resultado, setResultado] = useState(""); // Estado para o resultado
 
     // Estado para controlar qual input está ativo
     const [activeInput, setActiveInput] = useState("n1");
@@ -25,6 +26,29 @@ const Calculadora = () => {
             setInputValue3(value.toString())
         }
     }   
+
+    const calcularResultado = async () => {
+        const response = await fetch('http://10.0.2.2:5000/calcular', {     // Conexão com o backend Python através de HTTP
+            method: 'POST',     // POST, pois estamos enviando uma requisição
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                n1: parseFloat(inputValue1),    // Enviamos os valore de n1
+                n2: parseFloat(inputValue2),    // Enviamos os valore de n2    
+                operacao: inputValue3,      // Enviamos a operação aritmética
+            }),
+        });
+
+        const data = await response.json();     // Recebemos o valor
+        console.log(data)       // Printa no terminal o resultado recebido do backend
+
+        if (response.ok) {
+            setResultado(data.resultado.toString());    // Converte o resultado recebido para string
+        } else {
+            Alert.alert(data.error);
+        }
+    };
     
     return (
         <View style={styles.container}>
@@ -53,7 +77,9 @@ const Calculadora = () => {
             <Text style={styles.igual}>=</Text>
             <Input
                 title="result" 
-                width="350px" 
+                width="350px"
+                value={resultado} // Exibe o resultado aqui
+                editable={false} // Para que o usuário não possa editar
             />
 
             <View style={{position: 'absolute', bottom: 15}}>
@@ -80,6 +106,10 @@ const Calculadora = () => {
                     <ButtomCustom title="Ver lógica" fontSize="20px" />
                     <ButtomCustom title="Ver código" fontSize="20px" />
                     <ButtomCustom title="+" backgroundColor="#D9830A" value={"+"} onPress={() => handleButtonPress('+')} />
+                </View>
+                <View style={styles.rowsTeclas}>
+                    <ButtomCustom title="=" style={{width:299}} onPress={calcularResultado} />
+                    <ButtomCustom title="DEL" fontSize="20px" />
                 </View>
             </View>
         </View>

@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     rowsOperacoes: {
         flexDirection: 'row', 
         gap: 10,
-        marginTop: 45
+        marginTop: 5
     },
     rowsTeclas: {
         flexDirection: 'row', 

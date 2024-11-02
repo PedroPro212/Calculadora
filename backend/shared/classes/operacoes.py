@@ -4,13 +4,13 @@ class Calculo:
         self.n2 = n2
     
     def adicao(self):
-        return print(f'Resultado: {self.n1 + self.n2}')
+        return self.n1 + self.n2
     
     def subtrair(self):
-        return print(f'Resultado: {self.n1 - self.n2}')
+        return self.n1 - self.n2
     
     def multiplicacao(self):
-        return print(f'Resultado: {self.n1 * self.n2}')
+        return self.n1 * self.n2
     
     def divisao(self):
-        return print(f'Resultado: {self.n1 / self.n2}')
+        return self.n1 / self.n2
