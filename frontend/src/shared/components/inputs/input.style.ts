@@ -13,7 +13,8 @@ export const InputContainer = styled.TextInput<{ width?: string }>`
     borderColor: #000000;
     backgroundColor: #D9D9D9;
     fontSize: 23px;
-    padding: 8px
+    padding: 8px;
+    textAlign: center
 `
 
 export const DescInput = styled.Text`

@@ -5,7 +5,7 @@ type ButtomFast = TouchableOpacityProps & {
     title: string,
     fontSize?: string,
     backgroundColor?: string,
-    value?: number
+    value?: string
 }
 
 const ButtomCustom = ({backgroundColor, title, fontSize, value, ...props}: ButtomFast) => {
