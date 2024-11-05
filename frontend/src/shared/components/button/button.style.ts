@@ -1,10 +1,13 @@
+import { Dimensions } from 'react-native';
 import styled from "styled-components/native";
+
+const { width, height } = Dimensions.get('window');
 
 export const ButtomContainer = styled.TouchableOpacity<{ backgroundColor?: string }>`
     alignItems: center;
     justifyContent: center;
-    width: 23.7%;
-    height: 90px;
+    width: ${width * 0.237}px;
+    height: ${height * 0.1}px;
     marginTop: 5px;
     backgroundColor: ${({ backgroundColor }) => backgroundColor || '#D9D9D9'};
     borderRadius: 5px;
