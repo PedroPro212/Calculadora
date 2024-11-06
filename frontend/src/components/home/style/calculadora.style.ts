@@ -1,4 +1,6 @@
-import { StyleSheet } from "react-native"
+import { StyleSheet, Dimensions  } from "react-native"
+
+const { width, height } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
     container: {
@@ -9,22 +11,22 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 25,
-        margin: 25,
+        margin: width * 0.04,   // 6% da largura da tela
         color: '#000000'
     },
     igual: {
         fontSize: 50,
-        marginTop: '2%',
+        marginTop: height * 0.0,
         color: '#000000'
     },
     rowsOperacoes: {
-        flexDirection: 'row', 
-        gap: 10,
-        marginTop: 5
+        flexDirection: 'row',   
+        gap: width * 0.025,     // 2.5% da largura da tela
+        marginTop: height * 0.015    // 1% da altura da tela
     },
     rowsTeclas: {
         flexDirection: 'row', 
-        gap: 5,
+        gap: width * 0.015, // 1.5% da largura da tela
     }
 })
 

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { View, Text, StyleSheet, TextInput, Alert } from "react-native";
+import { Dimensions } from 'react-native';
 
 // Meus componentes
 import styles from "../style/calculadora.style";
@@ -10,6 +11,7 @@ import ButtomCustom from "../../../shared/components/button/Button";
 import { deletarUltimoCaracter } from "../../../shared/functions/deleteCaracter";
 
 const Calculadora = () => {
+    const screenWidth = Dimensions.get('window').width;
     
     const [inputValue1, setInputValue1] = useState("")  // n1
     const [inputValue2, setInputValue2] = useState("")  // n2
@@ -63,19 +65,22 @@ const Calculadora = () => {
                     title="n1" 
                     value={inputValue1}
                     onFocus={() => setActiveInput("n1")}
-                    onChangeText={setInputValue1} 
+                    onChangeText={setInputValue1}
+                    showSoftInputOnFocus={false}
                 />
                 <Input 
                     title="operacao" 
                     value={inputValue3}
                     onFocus={() => setActiveInput("operacao")}
                     onChangeText={setInputValue3} 
+                    showSoftInputOnFocus={false}
                 />
                 <Input 
                     title="n2" 
                     value={inputValue2} 
                     onFocus={() => setActiveInput("n2")} 
                     onChangeText={setInputValue2} 
+                    showSoftInputOnFocus={false}    // Esconde o teclado
                 />
             </View>
             <Text style={styles.igual}>=</Text>
@@ -112,7 +117,7 @@ const Calculadora = () => {
                     <ButtomCustom title="+" backgroundColor="#D9830A" value={"+"} onPress={() => handleButtonPress('+')} />
                 </View>
                 <View style={styles.rowsTeclas}>
-                    <ButtomCustom title="=" style={{width:299}} onPress={calcularResultado} />
+                    <ButtomCustom title="=" style={{ width: screenWidth * 0.73 }} onPress={calcularResultado} />
                     <ButtomCustom title="DEL" fontSize="20px" onPress={() => deletarUltimoCaracter(activeInput, inputValue1, inputValue2, inputValue3, setInputValue1, setInputValue2, setInputValue3)} />
                 </View>
             </View>
