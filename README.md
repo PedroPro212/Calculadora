@@ -9,3 +9,4 @@
 ### Python
     pip install Flask
     pip install Flask flask-cors
+    pip install awscli awsebcli
