@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { View, Text, StyleSheet, TextInput, Alert } from "react-native";
+import { View, Text, StyleSheet, TextInput, Alert, Modal, Button } from "react-native";
 import { Dimensions } from 'react-native';
 
 // Meus componentes
 import styles from "../style/calculadora.style";
 import Input from "../../../shared/components/inputs/Input";
 import ButtomCustom from "../../../shared/components/button/Button";
+import ModalCodigo from "../../../shared/components/modalCodigo/ModalCodigo";
 
 // Minhas funções
 import { deletarUltimoCaracter } from "../../../shared/functions/deleteCaracter";
@@ -22,6 +23,14 @@ const Calculadora = () => {
     const [activeInput, setActiveInput] = useState("n1");
 
     const operacao = ['+', '-', '*', '/'] // Array com todos os sinais de operações
+
+    // Estado para controlar a visibilidade do modal
+    const [modalVisible, setModalVisible] = useState(false);
+    const [modalValue, setModalValue] = useState(''); // Adicionando modalValue
+
+    const handleOpenModalCodigo  = () => {
+        setModalVisible(true);
+    }
 
     const handleButtonPress = (value:any) => {
         if (activeInput === "n1" && !operacao.includes(value)) {    // Verifica se o usuário não está digitando sinais de operações
@@ -58,7 +67,13 @@ const Calculadora = () => {
     
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Calculadora do conhecimento</Text>            
+            <Text style={styles.title}>Calculadora do conhecimento</Text>           
+
+            <ModalCodigo 
+                visible={modalVisible}
+                setModalVisible={setModalVisible}
+                //modalValue={modalValue} // Passando a prop modalValue
+            />
 
             <View style={styles.rowsOperacoes}>
                 <Input 
@@ -113,7 +128,7 @@ const Calculadora = () => {
                 <View style={styles.rowsTeclas}>
                     <ButtomCustom title="0" value={'0'} onPress={() => handleButtonPress(0)} />
                     <ButtomCustom title="Ver lógica" fontSize="20px" />
-                    <ButtomCustom title="Ver código" fontSize="20px" />
+                    <ButtomCustom title="Ver código" fontSize="20px" onPress={() => handleOpenModalCodigo()} />
                     <ButtomCustom title="+" backgroundColor="#D9830A" value={"+"} onPress={() => handleButtonPress('+')} />
                 </View>
                 <View style={styles.rowsTeclas}>
