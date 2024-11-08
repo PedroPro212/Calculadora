@@ -10,6 +10,7 @@ import ModalCodigo from "../../../shared/components/modalCodigo/ModalCodigo";
 
 // Minhas funções
 import { deletarUltimoCaracter } from "../../../shared/functions/deleteCaracter";
+import calcularResultado from "../../../shared/functions/calcularResultado/calcularResultado";
 
 const Calculadora = () => {
     const screenWidth = Dimensions.get('window').width;
@@ -41,29 +42,6 @@ const Calculadora = () => {
             setInputValue3(value.toString())
         }
     }   
-
-    const calcularResultado = async () => {
-        const response = await fetch('http://10.0.2.2:5000/calcular', {     // Conexão com o backend Python através de HTTP
-            method: 'POST',     // POST, pois estamos enviando uma requisição
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                n1: parseFloat(inputValue1),    // Enviamos os valore de n1
-                n2: parseFloat(inputValue2),    // Enviamos os valore de n2    
-                operacao: inputValue3,      // Enviamos a operação aritmética
-            }),
-        });
-
-        const data = await response.json();     // Recebemos o valor
-        console.log(data)       // Printa no terminal o resultado recebido do backend
-
-        if (response.ok) {
-            setResultado(data.resultado.toString());    // Converte o resultado recebido para string
-        } else {
-            Alert.alert(data.error);
-        }
-    };
     
     return (
         <View style={styles.container}>
@@ -132,7 +110,7 @@ const Calculadora = () => {
                     <ButtomCustom title="+" backgroundColor="#D9830A" value={"+"} onPress={() => handleButtonPress('+')} />
                 </View>
                 <View style={styles.rowsTeclas}>
-                    <ButtomCustom title="=" style={{ width: screenWidth * 0.73 }} onPress={calcularResultado} />
+                    <ButtomCustom title="=" style={{ width: screenWidth * 0.73 }} onPress={() => calcularResultado(inputValue1, inputValue2, inputValue3, setResultado)} />
                     <ButtomCustom title="DEL" fontSize="20px" onPress={() => deletarUltimoCaracter(activeInput, inputValue1, inputValue2, inputValue3, setInputValue1, setInputValue2, setInputValue3)} />
                 </View>
             </View>
