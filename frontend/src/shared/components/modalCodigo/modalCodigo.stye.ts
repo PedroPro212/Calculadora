@@ -48,3 +48,17 @@ export const TextButtom = styled.Text`
   textAlign: center;
   textTransform: uppercase;
 `
+
+export const ViewCodigo = styled.View`
+  width: ${width * 0.7}px;
+  backgroundColor: #424e5e;
+  align-self: center;
+  padding: 10px;
+  marginTop: ${width * 0.05}px;
+  borderRadius: 5px;
+`
+
+export const TextCodigo = styled.Text`
+  color: #FFFFFF;
+  fontSize: ${width * 0.036}px;
+`
