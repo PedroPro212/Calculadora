@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { Modal, Button, ModalProps } from "react-native";
+import { Modal, Button, ModalProps, Text } from "react-native";
 
-import { ModalContainer, ViewContainer, Title } from "./modalCodigo.stye";
+import { ModalContainer, ViewContainer, Title, ButtomC, TextButtom } from "./modalCodigo.stye";
 
 type ModalFast = ModalProps & {
     visible: boolean;         // Recebe a visibilidade como prop
     setModalVisible: (value: boolean) => void; // Função para controlar a visibilidade
-    modalValue?: string;       // Valor do modal a ser exibido
+    modalValue?: { n1: string, operacao: string, n2: string, resultado: string };       // Valor do modal a ser exibido
 }
 
-const ModalCodigo = ({ visible, setModalVisible, ...props}: ModalFast) => {
+const ModalCodigo = ({ visible, setModalVisible, modalValue, ...props}: ModalFast) => {
 
     const handleModalPress = (value:any) => {
         setModalVisible(true);  // Abre o modal
@@ -28,7 +28,10 @@ const ModalCodigo = ({ visible, setModalVisible, ...props}: ModalFast) => {
             <ModalContainer>
                 <ViewContainer>
                     <Title>Veja o código por trás</Title>
-                    <Button title="Fechar" onPress={() => setModalVisible(false)} />
+                    <Text>Sua operação é: {modalValue?.n1} {modalValue?.operacao} {modalValue?.n2} = {modalValue?.resultado}</Text>
+                    <ButtomC onPress={() => setModalVisible(false)}>
+                        <TextButtom>Fechar</TextButtom>
+                    </ButtomC>
                 </ViewContainer>
             </ModalContainer>
         </Modal>

@@ -27,9 +27,12 @@ const Calculadora = () => {
 
     // Estado para controlar a visibilidade do modal
     const [modalVisible, setModalVisible] = useState(false);
-    const [modalValue, setModalValue] = useState(''); // Adicionando modalValue
+    const [modalValue, setModalValue] = useState({ n1: "", operacao: "", n2: "", resultado: "" }); // Adicionando modalValue
 
     const handleOpenModalCodigo  = () => {
+        // Construa a string com os valores dos inputs para exibir no modal
+        const modalContent = {n1: inputValue1, operacao: inputValue3, n2: inputValue2, resultado};
+        setModalValue(modalContent);  // Configura o valor do modal
         setModalVisible(true);
     }
 
@@ -51,6 +54,7 @@ const Calculadora = () => {
                 visible={modalVisible}
                 setModalVisible={setModalVisible}
                 //modalValue={modalValue} // Passando a prop modalValue
+                modalValue={modalValue} // Passando modalValue como prop
             />
 
             <View style={styles.rowsOperacoes}>

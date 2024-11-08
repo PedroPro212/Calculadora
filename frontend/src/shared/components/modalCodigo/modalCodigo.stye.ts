@@ -30,3 +30,21 @@ export const Title = styled.Text`
     textTransform: uppercase;
     marginBottom: 15px;
 `
+
+export const ButtomC = styled.TouchableOpacity`
+  width: ${width * 0.7}px;
+  height: ${height * 0.05}px;
+  backgroundColor: #D9830A;
+  borderRadius: 5px;
+  alignItems: center;
+  justifyContent: center;
+  align-self: center;
+  position: absolute; 
+  bottom: 35px;
+`
+
+export const TextButtom = styled.Text`
+  fontSize: ${width * 0.039}px;
+  textAlign: center;
+  textTransform: uppercase;
+`
