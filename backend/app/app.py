@@ -7,7 +7,7 @@ sys.path.append(str(Path(__file__).resolve().parents[1]))   # Adiciona o diretó
 from shared.classes.operacoes import Calculo    # Importei minha classe Calculo
 
 app = Flask(__name__)   # Inicia uma aplicação Flask
-CORS(app)   # Configuramos a aplicação para aceitar requisições de diferentes origens
+CORS(app, resources={r"/*": {"origins": "*"}})   # Configuramos a aplicação para aceitar requisições de diferentes origens
 
 @app.route('/calcular', methods=['POST'])   # Definimos uma rota de URL que estará disponível para receber requsições HTTP do tipo POST.
 

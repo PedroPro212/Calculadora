@@ -10,3 +10,7 @@
     pip install Flask
     pip install Flask flask-cors
     pip install awscli awsebcli
+### AWS
+    sudo apt install nginx -y
+    sudo apt install certbot python3-certbot-nginx -y
+    
