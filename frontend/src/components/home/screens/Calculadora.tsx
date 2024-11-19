@@ -31,7 +31,14 @@ const Calculadora = () => {
 
     const handleOpenModalCodigo  = () => {
         // Construa a string com os valores dos inputs para exibir no modal
-        const modalContent = {n1: inputValue1, operacao: inputValue3, n2: inputValue2, resultado};
+        const modalContent = {n1: inputValue1, operacao: inputValue3, n2: inputValue2, resultado, tipo: 'Codigo'};
+        setModalValue(modalContent);  // Configura o valor do modal
+        setModalVisible(true);
+    }
+
+    const handleOpenModalLogica  = () => {
+        // Construa a string com os valores dos inputs para exibir no modal
+        const modalContent = {n1: inputValue1, operacao: inputValue3, n2: inputValue2, resultado, tipo: 'Logica'};
         setModalValue(modalContent);  // Configura o valor do modal
         setModalVisible(true);
     }
@@ -109,7 +116,7 @@ const Calculadora = () => {
                 </View>
                 <View style={styles.rowsTeclas}>
                     <ButtomCustom title="0" value={'0'} onPress={() => handleButtonPress(0)} />
-                    <ButtomCustom title="Ver lógica" fontSize="20px" />
+                    <ButtomCustom title="Ver lógica" fontSize="20px" onPress={() => handleOpenModalLogica()} />
                     <ButtomCustom title="Ver código" fontSize="20px" onPress={() => handleOpenModalCodigo()} />
                     <ButtomCustom title="+" backgroundColor="#D9830A" value={"+"} onPress={() => handleButtonPress('+')} />
                 </View>

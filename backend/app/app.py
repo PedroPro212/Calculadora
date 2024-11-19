@@ -17,6 +17,8 @@ def calcular():
     n2 = float(data['n2'])  # Converte para float o valor associado à chave 'n1' do JSON recebido
     operacao = data['operacao']     # Extrai o valor da operação a ser realizada, que deve estar na chave 'operacao' do JSON recebido
 
+    print(f'\nN1: {n1} \nSinal: {operacao} \nN2: {n2} \n')
+
     objeto = Calculo(n1,n2)     # Cria uma instância do objeto 'Calculo', passando 'n1' e 'n2' como parâmetros para o construtor
 
     # Verifica qual operação foi solicitada e chama a condicional correspondente na instância de Calculo
@@ -34,4 +36,5 @@ def calcular():
     return jsonify({'resultado': resultado})    # Retorna o resultado em formato JSON
 
 if __name__ == '__main__':  # Executa o servidor Flask se este script for executado diretamente
-    app.run(debug=True) # Inicia o servidor Flask em modo debug
+    app.run(debug=True, host='0.0.0.0') # Inicia o servidor Flask em modo debug
+    # app.run(debug=True)

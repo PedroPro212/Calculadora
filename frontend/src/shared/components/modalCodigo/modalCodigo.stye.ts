@@ -19,7 +19,7 @@ export const ModalContainer = styled.View`
 export const ViewContainer = styled.View`
     width: ${modalWidth}px;
     height: ${modalHeight}px; 
-    padding: 20px;
+    padding: 19px;
     backgroundColor: white; 
     borderRadius: 10px;
 `

@@ -12,8 +12,10 @@ export default async function calcularResultado(inputValue1:any, inputValue2:any
             Alert.alert('Erro de conexão', 'Verifique sua conexão com a internet.');
             return;
         }
-
-        const response = await fetch('http//:15.229.5.232/calcular', {
+        
+        // AWS: http//:15.229.5.232/calcular
+        // LOCAL: http://10.0.2.2:5000/calcular
+        const response = await fetch('http://10.0.2.2:5000/calcular', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -38,7 +40,7 @@ export default async function calcularResultado(inputValue1:any, inputValue2:any
             console.log("Erro: ", data.resultado.toString())
             Alert.alert(data.error);  // Exibe um erro se houver
         }
-    } catch (error) {
+    } catch (error:any) {
         if (error.name === 'AbortError') {
             Alert.alert('Requisição demorou demais e foi cancelada.');
             console.log("Requisição demorou demais e foi cancelada.")
