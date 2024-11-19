@@ -3,6 +3,8 @@ import { Modal, Button, ModalProps, Text, StyleSheet, View } from "react-native"
 
 import { ModalContainer, ViewContainer, Title, ButtomC, TextButtom, ViewCodigo, TextCodigo } from "./modalCodigo.stye";
 
+import VerLogicaF from "../../functions/VerLogica/verLogica";
+
 type ModalFast = ModalProps & {
     visible: boolean;         // Recebe a visibilidade como prop
     setModalVisible: (value: boolean) => void; // Função para controlar a visibilidade
@@ -101,10 +103,12 @@ const ModalCodigo = ({ visible, setModalVisible, modalValue, ...props}: ModalFas
                             ) : (modalValue?.operacao === '*') ? (
                                 <View>
                                     <Text style={{fontSize: 16, marginTop: 30}}>Multiplicação</Text>
+                                    <VerLogicaF n1={modalValue?.n1} n2={modalValue?.n2} operacao={modalValue?.operacao} resultado={modalValue?.resultado} />
                                 </View>
                             ) : (modalValue?.operacao === '/') ? (
                                 <View>
                                     <Text style={{fontSize: 16, marginTop: 30}}>Divisão</Text>
+                                    <VerLogicaF n1={modalValue?.n1} n2={modalValue?.n2} operacao={modalValue?.operacao} resultado={modalValue?.resultado} />
                                 </View>
                             ) : null}
 
