@@ -102,12 +102,12 @@ const ModalCodigo = ({ visible, setModalVisible, modalValue, ...props}: ModalFas
                                 </View>
                             ) : (modalValue?.operacao === '*') ? (
                                 <View>
-                                    <Text style={{fontSize: 16, marginTop: 30}}>Multiplicação</Text>
+                                    <Text style={{fontSize: 18, marginTop: 30, marginBottom: 15}}>Multiplicação</Text>
                                     <VerLogicaF n1={modalValue?.n1} n2={modalValue?.n2} operacao={modalValue?.operacao} resultado={modalValue?.resultado} />
                                 </View>
                             ) : (modalValue?.operacao === '/') ? (
                                 <View>
-                                    <Text style={{fontSize: 16, marginTop: 30}}>Divisão</Text>
+                                    <Text style={{fontSize: 18, marginTop: 30, marginBottom: 15}}>Divisão</Text>
                                     <VerLogicaF n1={modalValue?.n1} n2={modalValue?.n2} operacao={modalValue?.operacao} resultado={modalValue?.resultado} />
                                 </View>
                             ) : null}
