@@ -16,9 +16,9 @@ export default async function calcularResultado(inputValue1:any, inputValue2:any
                 return;
             }
             
-            // AWS: http//:15.229.5.232/calcular
+            // AWS: http//:15.229.5.232:5000/calcular
             // LOCAL: http://10.0.2.2:5000/calcular
-            const response = await fetch('http://18.228.3.172:5000/calcular', {
+            const response = await fetch('http:/15.229.2.97:5000/calcular', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

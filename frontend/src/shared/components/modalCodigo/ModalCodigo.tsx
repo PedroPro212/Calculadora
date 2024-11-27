@@ -56,9 +56,11 @@ const ModalCodigo = ({ visible, setModalVisible, modalValue, ...props}: ModalFas
                     ) : (
                         <View>
                             <Title>Veja a lógica por trás</Title>
+                            <Text>A operação pode ser facilmente resolvida a partir do seu conceito matemático:</Text>
                             <Text style={{fontSize: 16, marginTop: 30}}>
                                 Sua operação é: {modalValue?.n1} {modalValue?.operacao} {modalValue?.n2} = {modalValue?.resultado}
                             </Text>
+                            {/* <Text>No entanto, precisamos entender que o conceito envolvido na multiplicação se trata de uma adição sucessiva. Ou seja:</Text> */}
 
                             {modalValue?.operacao === '+' ? (
                                 <View>
