@@ -6,7 +6,7 @@ const { width, height } = Dimensions.get("window");
 
 // Tamanho máximo para o modal
 const modalWidth = width * 0.85; // Modal com 85% da largura da tela
-const modalHeight = height * 0.8; // Modal com 50% da altura da tela
+const modalHeight = height * 0.9; // Modal com 50% da altura da tela
 
 export const ModalContainer = styled.View`
   flex: 1; 
