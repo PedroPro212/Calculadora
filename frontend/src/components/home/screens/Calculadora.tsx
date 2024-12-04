@@ -55,7 +55,7 @@ const Calculadora = () => {
     
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Calculadora do conhecimento</Text>           
+            <Text style={styles.title}>CALCULADORA PEDAGÓGICA</Text>           
 
             <ModalCodigo 
                 visible={modalVisible}

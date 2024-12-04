@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, SafeAreaView } from "react-native";
 
 type Props = {
   n1: string;
@@ -41,21 +41,23 @@ const VerLogicaF: React.FC<Props> = ({ n1, n2, operacao, resultado }) => {
     } else if (n2Number === 4) {
         return (
             <View>
-                <Text>{n1} + {n1} = {n1Number + n1Number}</Text>
-                <Text>{n1Number + n1Number} + {n1Number} = {n1Number * 3}</Text>
-                <Text>{n1Number + n1Number} + {n1Number} = {n1Number * 4}</Text>
+                <Text style={{fontSize: 20}}>{n1} + {n1} = {n1Number + n1Number}</Text>
+                <Text style={{fontSize: 20}}>{n1Number + n1Number} + {n1Number} = {n1Number * 3}</Text>
+                <Text style={{fontSize: 20}}>{n1Number + n1Number} + {n1Number} = {n1Number * 4}</Text>
             </View>
         );
     }
     else {
         return (
-            <View>
-                <Text>{n1} + {n1} = {n1Number + n1Number}</Text>
-                <Text>{n1Number + n1Number} + {n1Number} = {n1Number * 3}</Text>
-                <Text>{n1Number + n1Number} + {n1Number} = {n1Number * 4}</Text>
-                <Text>...</Text>
-                <Text>Irá somar mais {n2Number - (4)} vezes até chegar no resulado.</Text>
-            </View>
+            <SafeAreaView>
+                <View>
+                    <Text>{n1} + {n1} = {n1Number + n1Number}</Text>
+                    <Text>{n1Number + n1Number} + {n1Number} = {n1Number * 3}</Text>
+                    <Text>{n1Number + n1Number} + {n1Number} = {n1Number * 4}</Text>
+                    <Text>...</Text>
+                    <Text>Irá somar mais {n2Number - (4)} vezes até chegar no resulado.</Text>
+                </View>
+            </SafeAreaView>
         );
     }
   } 
@@ -88,36 +90,48 @@ const VerLogicaF: React.FC<Props> = ({ n1, n2, operacao, resultado }) => {
     let resultado = n1Number;
     let count = 0;
 
-    // Simulação para contar quantas vezes o loop total seria necessário
-    let totalRepeticoes = 0;
-    let tempResultado = n1Number;
-    while (tempResultado > 1) {
-        tempResultado -= n2Number;
-        totalRepeticoes++;
-    }
+    // Calcula o total de repetições necessárias para atingir 0
+    const totalRepeticoes = Math.floor(n1Number / n2Number) + (n1Number % n2Number !== 0 ? 1 : 0);
 
-    // Execução limitada a 4 iterações
-    while (resultado > 1 && count < 4) {
-        resultado -= n2Number;
-        count++;
-        subtracoes.push(`${n1Number} - (${n2Number} x ${count}) = ${resultado}`);
+    // Loop para realizar a subtração sequencial, limitado a 4 iterações
+    while (resultado > 0 && count < 4) {
+        const novoResultado = resultado - n2Number;
+
+        if (novoResultado >= 0) {
+            subtracoes.push(`${resultado} - ${n2Number} = ${novoResultado}`);
+            resultado = novoResultado;
+            count++;
+        } else {
+            break; // Sai do loop se o resultado for menor que zero
+        }
     }
 
     return (
-        <View>
-            <Text style={styles.textoExplicacoes}>Subtraindo {n2} de {n1} até atingir 0 ou 1:</Text>
-            {subtracoes.map((subtracao, index) => (
-                <Text key={index} style={styles.textoExplicacoes}>{subtracao}</Text>
-            ))}
-            <Text style={{marginTop: 15, fontSize: 15}}>Total de repetições de subtração necessárias: {totalRepeticoes}</Text>
+        <SafeAreaView>
+            <View>
+                <Text style={styles.textoExplicacoes}>
+                    Subtraindo {n2Number} de {n1Number} até atingir 0:
+                </Text>
+                {subtracoes.map((subtracao, index) => (
+                    <Text key={index} style={styles.textoExplicacoes}>
+                        {subtracao}
+                    </Text>
+                ))}
 
-            <Text style={{marginTop: 15, marginBottom: 15, fontSize: 18}}>Explicação:</Text>
-            <Text style={styles.textoExplicacoes}>O número {n2Number} será subtraído {totalRepeticoes} vezes do número {n1Number} até chegar no 0 ou 1.</Text>
+                <Text style={{ marginTop: 15, fontSize: 15 }}>
+                    Total de repetições necessárias para chegar a 0 ou resto = {totalRepeticoes} vezes
+                </Text>
 
-            <Text style={{marginTop: 15, marginBottom: 15, fontSize: 15}}>OBS: O que está dentro do () será a quantidade de repetições que o número {n2Number} está subtraindo.</Text>
-        </View>
+                <Text style={{ marginTop: 15, fontSize: 15 }}>
+                    Total de repetições realizadas nesta simulação: {count}
+                </Text>
+            </View>
+        </SafeAreaView>
     );
-  }
+}
+
+
+
 
 };
 
